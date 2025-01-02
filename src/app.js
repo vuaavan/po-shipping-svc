@@ -1,6 +1,9 @@
 const express = require("express")
 const mongoose = require("mongoose")
+const dotenv = require("dotenv")
 const shippingRoutes = require("./routes/shippingRoutes")
+
+dotenv.config()
 
 const app = express()
 
@@ -12,7 +15,7 @@ app.use("/shipping", shippingRoutes)
 
 // Database Connection
 mongoose
-  .connect("mongodb://localhost:27017/shipping-service", {
+  .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
