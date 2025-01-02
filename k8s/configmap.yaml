@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: shipping-config
+data:
+  SHIPPING_REGION: "US"
+  SHIPPING_BASE_URL: "https://api.shippingprovider.com"

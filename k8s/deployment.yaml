@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shipping-service
+  labels:
+    app: shipping-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: shipping-service
+  template:
+    metadata:
+      labels:
+        app: shipping-service
+    spec:
+      containers:
+        - name: shipping-service
+          image: your-docker-registry/shipping-service:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: SHIPPING_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: shipping-secrets
+                  key: apiKey
